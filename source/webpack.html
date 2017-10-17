@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>项目构建工具</title>
+</head>
+<body>
+
+    webpack 是一个模块化工具，打包工具，构建工具
+
+    所有的文件都是模块，包括图片 css js ts jade vue jpg png gif woff
+    webpack默认只支持js文件，如果需要使用其他文件，则需要安装loader
+    webpack插件增强功能  webpack-plugin
+    1.集成前端开发环境
+        a.模块化开发
+        b.合并压缩代码
+        c.编译ES6、编译sass,开发环境
+           1.安装babel-loader、babel-core、 babel-preset-env模块
+           2.在项目根目录创建一个 .babelrc 文件
+           3.配置babelrc和webpack.config.js
+
+
+           css 
+            1.安装style-loader,css-loader
+            2.extract-text-webpack-plugin插件 主要作用是提取打包后的css代码，输出css文件
+            3.配置webpack.config.js
+        d.压缩图片，合成雪碧图
+
+    webpack其实就是将所有的js合并并且编译成一个js文件
+
+    requirejs
+        每一个js文件都是一个模块，如何使用模块，在入口文件
+</body>
+</html>
