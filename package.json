@@ -1,0 +1,30 @@
+{
+  "name": "learn-node-npm-webpack-sass",
+  "version": "1.0.0",
+  "description": "学习npm、webpack、sass",
+  "main": "index.js",
+  "scripts": {
+    "dev": "browser-sync start --server \"source\" --files \"source\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luyishiqi/learn-node-npm-webpack-sass.git"
+  },
+  "keywords": [
+    "node、npm、webpack、sass"
+  ],
+  "author": "李海",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luyishiqi/learn-node-npm-webpack-sass/issues"
+  },
+  "homepage": "https://github.com/luyishiqi/learn-node-npm-webpack-sass#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "sass-loader": "^6.0.6",
+    "webpack": "^3.7.1"
+  }
+}
