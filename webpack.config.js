@@ -8,7 +8,7 @@ module.exports = {
     entry: {
         index: __dirname + '/muiltPageProjectDemo/pages/index.js',
         demo: __dirname + '/muiltPageProjectDemo/pages/demo.js',
-        common: ['jquery',__dirname + '/muiltPageProjectDemo/common/index.js'],
+        common: ['jquery', __dirname + '/muiltPageProjectDemo/common/index.js'],
     },
     //配置输出
     output: {
@@ -27,36 +27,39 @@ module.exports = {
             // loaders: ['style-loader', 'css-loader']
             use: Extract.extract({
                 fallback: "style-loader",
-                use: [
-                    {
-                        loader:"css-loader",
-                        options:{
-                            minimize:true
-                        }
+                use: [{
+                    loader: "css-loader",
+                    options: {
+                        minimize: true
                     }
-                ]
+                }]
             })
         }, { //jpg  jpeg
             test: /\.(png|jpe?g|gif)$/,
             use: [{
                 loader: 'file-loader',
                 options: {
-                    name:'img/[name].[ext]'
+                    name: 'img/[name].[ext]'
                 }
             }]
-        },{
-            test:/\.(eot|svg|ttf|woff|woff2)$/,
-            use:[{
-                
-                loader:'file-loader',
-                options:{
-                    name:'css/fonts/[name].[ext]',
+        }, {
+            test: /\.(eot|svg|ttf|woff|woff2)$/,
+            use: [{
+
+                loader: 'file-loader',
+                options: {
+                    name: 'css/fonts/[name].[ext]',
                 }
             }]
         }]
     },
+    // devServer: {
+    //     port: 8000,//设置端口号
+    //     hot: true,
+    //     inline: true
+    // },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin(), //只支持js压缩
+        // new webpack.optimize.UglifyJsPlugin(), //只支持js压缩
         //使用webpack 插件，都必须在这里new出来
         new Extract("css/[name].css"),
         new webpack.optimize.CommonsChunkPlugin({

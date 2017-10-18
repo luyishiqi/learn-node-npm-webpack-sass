@@ -4,7 +4,8 @@
   "description": "学习npm、webpack、sass",
   "main": "index.js",
   "scripts": {
-    "dev": "browser-sync start --server \"source\" --files \"source\""
+    "dev": "browser-sync start --server \"source\" --files \"source\"",
+    "start": "webpack-dev-server --progress --color"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
     "url-loader": "^0.6.2",
-    "webpack": "^3.7.1"
+    "webpack": "^3.7.1",
+    "webpack-dev-server": "^2.9.2"
   }
 }
