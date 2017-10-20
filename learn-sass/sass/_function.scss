@@ -1,0 +1,8 @@
+@function px2rem($px, $type:pc) {
+    @if $type==m {
+        @return $px/20+rem;
+    }
+    @else {
+        @return $px/10+rem;
+    }
+}

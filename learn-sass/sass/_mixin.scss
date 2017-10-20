@@ -1,0 +1,74 @@
+@mixin css3($prop, $value) {
+    @each $item in -webkit-,
+    -moz-,
+    -ms-,
+    -o-,
+    '' {
+        #{$item}#{$prop}: $value;
+    }
+}
+
+@mixin transform($value...) {
+    @include css3(transform, $value);
+}
+
+@mixin transition($value...) {
+    @include css3(transition, $value);
+}
+
+@mixin frames($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @-o-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
+@mixin media($type) {
+    @if $type==xs {
+        @media (max-width: $screen-xs) {
+            //手机
+            @content;
+        }
+    }
+    @else if $type==sm {
+        @media (min-width: $screen-xs) and (max-width:$screen-sm) {
+            //平板
+            @content;
+        }
+    }
+    @else if $type==md {
+        @media (min-width:$screen-sm) and (max-width:$screen-md) {
+            //小屏幕电脑
+            @content;
+        }
+    }
+    @else if $type==lg {
+        @media (min-width:$screen-md) {
+            //大屏幕电脑
+            @content;
+        }
+    }  
+}
+@mixin color($keyWord, $attr) {
+    @each $key,
+    $value in $colors {
+        .#{$keyWord}-#{$key} {
+            @if $attr==color {
+                color: $value;
+            }
+            @else {
+                #{$attr}-color: $value;
+            }
+        }
+    }
+}

@@ -1,3 +1,5 @@
+@import "../../sass/index.scss";
+
 * {
     margin: 0;
     padding: 0;
@@ -18,38 +20,69 @@ minxin
 
 */
 
-$primary-color:red;
-$default-color:#ddd;
-$arr:(1, 2, 3, 4, 5); //数组
-$colors:( primary:#428bca, defalut:#ddd, warning:#f0ad4e, info:#5bc0de, danger:#d9534f, success:#5cb85c, error:#d9534f, );
- /*
+
+/*
                 color
                 background-color
                 border-color
             */
-            // background-color: $value;
-@mixin color($keyWord,$attr) {
-    @each $key,$value in $colors{
-        .#{$keyWord}-#{$key} {
-            @if $attr==color{
-                color: $value;
-            }@else{
-                #{$attr}-color:$value;
-            }
-        }
+
+// background-color: $value;
+
+
+
+/*
+html font-size:10px
+rem 100px
+*/
+
+html {
+    font-size: 10px;
+}
+
+// xs   sm md lg   
+
+
+//转换rem单位
+
+
+
+.box {
+    @include transform(rotate(39deg) translate(30px,30px));
+    @include media(xs){
+        background: red;
+    }
+  
+    @include media(sm){
+        background: green;
+    }
+    @include media(md){
+        background: blue;
+    }
+    @include media(lg){
+        background: pink;
     }
 }
-.box {
-    width: 100px;
-    height: 100px;
-    background: $primary-color;
-    border: 1px solid #000;
-    padding: {
-        left: 10px;
-        right: 20px;
-        bottom: 30px;
+
+@include frames(rotate) {
+    from {
+        @include transform(translateX(0) rotate(0deg));
     }
-    margin-top:(100/3)+px;
+    to {
+        @include transform(translateX(500px) rotate(360deg));
+    }
+}
+
+.box {
+    width: px2rem(100);
+    height: px2rem(100);
+    // background: $primary-color; // border: 1px solid #000;
+    // padding: {
+    //     left: 10px;
+    //     right: 20px;
+    //     bottom: 30px;
+    // }
+    margin-top: (100/3)+px;
     .caption {
         h2 {
             font-size: 14px;
@@ -74,7 +107,7 @@ $colors:( primary:#428bca, defalut:#ddd, warning:#f0ad4e, info:#5bc0de, danger:#
         width: $item;
     }
 }
-@include color(btn,background);
-@include color(bg,border);
-@include color(text,color);
 
+@include color(btn, background);
+@include color(bg, border);
+@include color(text, color);
