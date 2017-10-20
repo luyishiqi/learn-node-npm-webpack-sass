@@ -2,13 +2,12 @@ const Extract = require('extract-text-webpack-plugin');
 //生成html，并且自动引入css和js html-webpack-plugin 
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const rootDir = "/learn-sass"
 module.exports = {
     //配置入口文件,一个入口相当于一个页面
     //如果需要多页面，则要创建多个入口
     entry: {
-        index: __dirname + '/muiltPageProjectDemo/pages/index.js',
-        demo: __dirname + '/muiltPageProjectDemo/pages/demo.js',
-        common: ['jquery', __dirname + '/muiltPageProjectDemo/common/index.js'],
+        index: __dirname + `${rootDir}/pages/index/index.js`,
     },
     //配置输出
     output: {
@@ -19,22 +18,21 @@ module.exports = {
     module: {
         rules: [{
             test: /\.js$/,
-            include: /muiltPageProjectDemo/,
+            include: /learn-sass/,
             //加载器，
             loaders: ['babel-loader'],
         }, {
             test: /\.(css|scss)$/,
-            // loaders: ['style-loader', 'css-loader']
+
             use: Extract.extract({
                 fallback: "style-loader",
                 use: [{
                     loader: "css-loader",
-                    options: {
-                        minimize: true
-                    }
+                }, {
+                    loader: 'sass-loader'
                 }]
             })
-        }, { //jpg  jpeg
+        }, {
             test: /\.(png|jpe?g|gif)$/,
             use: [{
                 loader: 'file-loader',
@@ -53,40 +51,24 @@ module.exports = {
             }]
         }]
     },
-    // devServer: {
-    //     port: 8000,//设置端口号
-    //     hot: true,
-    //     inline: true
-    // },
+
     plugins: [
-        // new webpack.optimize.UglifyJsPlugin(), //只支持js压缩
-        //使用webpack 插件，都必须在这里new出来
+
         new Extract("css/[name].css"),
         new webpack.optimize.CommonsChunkPlugin({
-            // name:'common.js',
+
             name: 'common',
             filename: 'js/common.js',
 
-        }), //将webapck自带的模块化工具抽离出来，将公共模块抽取出来
+        }),
         new htmlWebpackPlugin({
-            // filename:'生成的html文件.html',
-            filename: 'demo.html',
-            title: 'demo',
-            chunks: ['common', 'demo'], //一个chunk就是一个入口
-            template: './template.html',
+
+            filename: 'index.html',
+            title: 'sass学习',
+            template: './learn-sass/pages/index/index.html',
             minify: {
                 html5: true
             }
         }),
-        new htmlWebpackPlugin({
-            // filename:'生成的html文件.html',
-            filename: 'index.html',
-            title: 'index',
-            chunks: ['common', 'index'],
-            template: './template.html',
-            minify: {
-                html5: true
-            }
-        })
     ]
 }

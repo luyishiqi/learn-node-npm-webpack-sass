@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    font: normal normal 12px/1 "微软雅黑";
+    text-decoration: none;
+}
+
+// 和编程一样，
+
+/*
+声明变量
+逻辑操作
+    
+流程控制
+函数
+minxin
+面向对象
+
+*/
+
+$primary-color:red;
+$default-color:#ddd;
+$arr:(1, 2, 3, 4, 5); //数组
+$colors:( primary:#428bca, defalut:#ddd, warning:#f0ad4e, info:#5bc0de, danger:#d9534f, success:#5cb85c, error:#d9534f, );
+ /*
+                color
+                background-color
+                border-color
+            */
+            // background-color: $value;
+@mixin color($keyWord,$attr) {
+    @each $key,$value in $colors{
+        .#{$keyWord}-#{$key} {
+            @if $attr==color{
+                color: $value;
+            }@else{
+                #{$attr}-color:$value;
+            }
+        }
+    }
+}
+.box {
+    width: 100px;
+    height: 100px;
+    background: $primary-color;
+    border: 1px solid #000;
+    padding: {
+        left: 10px;
+        right: 20px;
+        bottom: 30px;
+    }
+    margin-top:(100/3)+px;
+    .caption {
+        h2 {
+            font-size: 14px;
+        }
+    }
+    &:hover {
+        background: $default-color;
+    }
+}
+
+// 循环
+//插值  `${fdsa}`
+@for $i from 1 through 5 {
+    .box#{$i} {
+        width: $i*100px;
+    }
+}
+
+// for in
+@each $item in $arr {
+    .box#{$item} {
+        width: $item;
+    }
+}
+@include color(btn,background);
+@include color(bg,border);
+@include color(text,color);
+
