@@ -33,6 +33,7 @@
         @content;
     }
 }
+
 @mixin media($type) {
     @if $type==xs {
         @media (max-width: $screen-xs) {
@@ -47,18 +48,19 @@
         }
     }
     @else if $type==md {
-        @media (min-width:$screen-sm) and (max-width:$screen-md) {
+        @media (min-width: $screen-sm) and (max-width:$screen-md) {
             //小屏幕电脑
             @content;
         }
     }
     @else if $type==lg {
-        @media (min-width:$screen-md) {
+        @media (min-width: $screen-md) {
             //大屏幕电脑
             @content;
         }
-    }  
+    }
 }
+
 @mixin color($keyWord, $attr) {
     @each $key,
     $value in $colors {
@@ -70,5 +72,69 @@
                 #{$attr}-color: $value;
             }
         }
+    }
+}
+
+
+/*
+ x    水平
+ y    垂直
+ all  完全
+*/
+
+@mixin center($dir, $type:absolute) {
+    position: $type;
+    @if $dir==x {
+        left: 50%;
+        @include transform(translateX(-50%));
+    }
+    @else if $dir==y {
+        top: 50%;
+        @include transform(translateY(-50%));
+    }
+    @else if $dir==all {
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+    }
+}
+
+@mixin createSanjiao($dir, $width, $color,$is) {
+    @if $dir==top {
+        $dir: bottom;
+    }
+    @else if $dir==bottom {
+        $dir: top;
+    }
+    @else if $dir==left {
+        $dir: right;
+    }
+    @else if $dir==right {
+        $dir: left;
+    }
+    &::#{$is} {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0; 
+        border: {
+            width: px2rem($width);
+            color: transparent;
+            style: solid;
+        }
+        border-#{$dir}-color:$color;
+        @content;
+    }
+}
+
+@mixin beforeSanjiao($dir,$width,$color){
+    @include createSanjiao($dir, $width, $color, before){
+        @content;
+    }
+}
+
+@mixin afterSanjiao($dir,$width,$color){
+    @include createSanjiao($dir, $width, $color, after){
+        @content;
     }
 }

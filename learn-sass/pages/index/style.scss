@@ -1,5 +1,4 @@
 @import "../../sass/index.scss";
-
 * {
     margin: 0;
     padding: 0;
@@ -29,8 +28,6 @@ minxin
 
 // background-color: $value;
 
-
-
 /*
 html font-size:10px
 rem 100px
@@ -41,25 +38,19 @@ html {
 }
 
 // xs   sm md lg   
-
-
 //转换rem单位
-
-
-
 .box {
-    @include transform(rotate(39deg) translate(30px,30px));
-    @include media(xs){
+    @include transform(rotate(39deg) translate(30px, 30px));
+    @include media(xs) {
         background: red;
     }
-  
-    @include media(sm){
+    @include media(sm) {
         background: green;
     }
-    @include media(md){
+    @include media(md) {
         background: blue;
     }
-    @include media(lg){
+    @include media(lg) {
         background: pink;
     }
 }
@@ -75,8 +66,7 @@ html {
 
 .box {
     width: px2rem(100);
-    height: px2rem(100);
-    // background: $primary-color; // border: 1px solid #000;
+    height: px2rem(100); // background: $primary-color; // border: 1px solid #000;
     // padding: {
     //     left: 10px;
     //     right: 20px;
@@ -111,3 +101,18 @@ html {
 @include color(btn, background);
 @include color(bg, border);
 @include color(text, color);
+.test {
+    width: px2rem(500);
+    height: px2rem(500);
+    background: $primary-color;
+    @include center(all, fixed);
+    @include beforeSanjiao(top, 20, black) {
+        @include center(x);
+        top: px2rem(-40);
+    }
+    @include afterSanjiao(bottom, 20, green) {
+        @include center(x);
+        bottom: px2rem(-40);
+    }
+   
+}
